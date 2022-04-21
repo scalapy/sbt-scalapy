@@ -25,7 +25,9 @@ lazy val sbtPluginSettings = Def.settings(
   libraryDependencies += pythonNativeLibs,
   semanticdbEnabled := true,
   semanticdbVersion := scalafixSemanticdb.revision,
-  scalacOptions += "-Ywarn-unused-import"
+  scalacOptions += "-Ywarn-unused-import",
+  scriptedLaunchOpts ++= Seq("-Xmx1024M", "-Dplugin.version=" + version.value),
+  scriptedBufferLog := false
 )
 
 lazy val `sbt-scalapy` = project
