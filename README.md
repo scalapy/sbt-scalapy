@@ -27,3 +27,25 @@
     ```scala
     scalapyPythonExecutable := "/absolute/path/to/python"
     ```
+
+## Advanced
+
+### JVM
+
+ScalaPy for JVM requries the name and location of `libpython`. You can set these manually instead of letting the plugin automatically figure it out,
+
+```scala
+scalapyPythonNativeLibrary := "python3.9m"
+scalapyPythonNativeLibraryPaths := Seq(
+  "/first/directory/to/look/for/libpython",
+  "/second/directory/to/look/for/libpython"
+)
+```
+
+### Scala Native
+
+ScalaPy for Scala Native requries [the linker flags for embedding Python](https://docs.python.org/3/extending/embedding.html#compiling-and-linking-under-unix-like-systems). You can set this manually instead of letting the plugin automatically figure it out,
+
+```scala
+scalapyLinkingOptions := Seq("-l...", "-l...")
+```
