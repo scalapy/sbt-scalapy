@@ -27,6 +27,12 @@ lazy val sbtPluginSettings = Def.settings(
   semanticdbVersion := scalafixSemanticdb.revision,
   scalacOptions += "-Ywarn-unused-import",
   scriptedLaunchOpts ++= Seq("-Xmx1024M", "-Dplugin.version=" + version.value),
+  scriptedLaunchOpts ++= {
+    for {
+      virtualenv <- Option(System.getenv("CI_VIRTUALENV"))
+      python <- Option(System.getenv("CI_PYTHON"))
+    } yield s"-Dplugin.python.executable=$python"
+  }.toSeq,
   scriptedBufferLog := false
 )
 

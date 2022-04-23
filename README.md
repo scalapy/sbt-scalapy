@@ -58,3 +58,13 @@ ScalaPy for Scala Native requries [the linker flags for embedding Python](https:
 ```scala
 scalapyLinkingOptions := Seq("-l...", "-l...")
 ```
+
+## Virtualenv
+
+To use a virtualenv Python, you can either activate the virtualenv then start sbt or set `scalapyPythonExecutable` to the virtualenv Python executable.
+
+For Scala Native, you also need to set the `SCALAPY_PYTHON_PROGRAMNAME` environment variable to the virtualenv Python executable,
+
+```sh
+SCALAPY_PYTHON_PROGRAMNAME="/path/to/python" sbt
+```
