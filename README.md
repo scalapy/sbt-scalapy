@@ -22,10 +22,18 @@
     enablePlugins(ScalaPyPlugin)
     ```
 
-    `sbt-scalapy` would then configure the project to use the `python` in your current environment. If you want to use another Python version, set the `scalapyPythonExecutable` key to the interpreter executable absolute path,
+    `sbt-scalapy` would then configure the project to use the `python` in your current environment. If you want to use another Python version, set the `scalapyPythonExecutable` key to the interpreter executable,
+
+    could be the absolute path
 
     ```scala
     scalapyPythonExecutable := "/absolute/path/to/python"
+    ```
+
+    or just the name of the executable if it's already in `PATH`
+
+    ```scala
+    scalapyPythonExecutable := "python3.9"
     ```
 
 ## Advanced
