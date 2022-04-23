@@ -11,7 +11,7 @@
     addSbtPlugin("ai.kien" % "sbt-scalapy" % "<version>")
     ```
 
-    for Scala Native,
+    for Scala Native or JVM + Scala Native,
 
     ```scala
     addSbtPlugin("ai.kien" % "sbt-scalapy-native" % "<version>")
