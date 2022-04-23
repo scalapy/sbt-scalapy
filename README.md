@@ -1,5 +1,6 @@
 # Automatic SBT configuration for ScalaPy
 
+![Build Status](https://github.com/kiendang/sbt-scalapy/actions/workflows/ci.yml/badge.svg)
 ## Quick start
 
 1. Add the plugin to `project/plugins.sbt`
