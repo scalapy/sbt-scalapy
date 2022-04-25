@@ -20,12 +20,18 @@ inThisBuild(
 
 ThisBuild / scalafixDependencies += organizeImports
 
-lazy val sbtPluginSettings = Def.settings(
+lazy val commonSettings = Seq(
   pluginCrossBuild / sbtVersion := "1.2.1",
-  libraryDependencies += pythonNativeLibs,
   semanticdbEnabled := true,
   semanticdbVersion := scalafixSemanticdb.revision,
-  scalacOptions += "-Ywarn-unused-import",
+  scalacOptions += "-Ywarn-unused-import"
+)
+
+lazy val sbtPluginSettings = Seq(
+  libraryDependencies += pythonNativeLibs
+)
+
+lazy val scriptedSettings = Seq(
   scriptedLaunchOpts ++= Seq("-Xmx1024M", "-Dplugin.version=" + version.value),
   scriptedLaunchOpts ++= {
     for {
@@ -33,12 +39,26 @@ lazy val sbtPluginSettings = Def.settings(
       python <- Option(System.getenv("CI_PYTHON"))
     } yield s"-Dplugin.python.executable=$python"
   }.toSeq,
-  scriptedBufferLog := false
+  scriptedBufferLog := false,
+  scripted := scripted
+    .dependsOn(
+      `sbt-scalapy` / publishLocal,
+      `sbt-scalapy-native` / publishLocal
+    )
+    .evaluated
+)
+
+lazy val noPublishSettings = Seq(
+  publishArtifact := false,
+  packagedArtifacts := Map.empty,
+  publish := {},
+  publishLocal := {}
 )
 
 lazy val `sbt-scalapy` = project
   .in(file("sbt-scalapy"))
   .enablePlugins(SbtPlugin)
+  .settings(commonSettings)
   .settings(sbtPluginSettings)
   .settings(
     name := "sbt-scalapy",
@@ -48,6 +68,7 @@ lazy val `sbt-scalapy` = project
 lazy val `sbt-scalapy-native` = project
   .in(file("sbt-scalapy-native"))
   .enablePlugins(SbtPlugin)
+  .settings(commonSettings)
   .settings(sbtPluginSettings)
   .settings(
     name := "sbt-scalapy-native",
@@ -55,3 +76,10 @@ lazy val `sbt-scalapy-native` = project
     addSbtPlugin(sbtScalaNative)
   )
   .dependsOn(`sbt-scalapy`)
+
+lazy val `sbt-scalapy-test` = project
+  .in(file("sbt-scalapy-test"))
+  .enablePlugins(SbtPlugin)
+  .settings(commonSettings)
+  .settings(noPublishSettings)
+  .settings(scriptedSettings)

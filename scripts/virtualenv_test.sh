@@ -9,12 +9,12 @@ python3 -m venv "${VENV_DIR}"
 
 CI_VIRTUALENV=true \
 CI_PYTHON="${VENV_DIR}/bin/python" \
-  sbt sbt-scalapy/scripted
+  sbt "sbt-scalapy-test/scripted sbt-scalapy/*"
 
 CI_VIRTUALENV=true \
 CI_PYTHON="${VENV_DIR}/bin/python" \
 SCALAPY_PYTHON_PROGRAMNAME="${VENV_DIR}/bin/python" \
-  sbt sbt-scalapy-native/scripted
+  sbt "sbt-scalapy-test/scripted sbt-scalapy-native/*"
 
 echo "Delete virtualenv ${VENV_DIR}"
 rm -rf "${VENV_DIR}"
