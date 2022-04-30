@@ -1,20 +1,14 @@
 # Automatic SBT configuration for ScalaPy
 
+*supports both JVM and/or Scala Native projects*
+
 ![Build Status](https://github.com/kiendang/sbt-scalapy/actions/workflows/ci.yml/badge.svg)
 ## Quick start
 
 1. Add the plugin to `project/plugins.sbt`
 
-    for JVM,
-
     ```scala
     addSbtPlugin("ai.kien" % "sbt-scalapy" % "<version>")
-    ```
-
-    for Scala Native or JVM + Scala Native,
-
-    ```scala
-    addSbtPlugin("ai.kien" % "sbt-scalapy-native" % "<version>")
     ```
 
 2. Enable the plugin for your ScalaPy project in `build.sbt`

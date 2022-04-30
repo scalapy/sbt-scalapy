@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Test default Python
-        run: sbt sbt-scalapy-test/scripted
+        run: sbt scripted
         shell: bash
       - name: Test virtualenv
         run: scripts/virtualenv_test.sh
