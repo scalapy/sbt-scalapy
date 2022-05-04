@@ -18,17 +18,12 @@ object ScalaPyNativePlugin extends AutoPlugin {
 
   import autoImport._
 
-  private val scalapyLinkingOptionsOpt = SettingKey.local[Option[Seq[String]]]
-
-  override def globalSettings: Seq[Setting[_]] = Seq(
-    scalapyLinkingOptionsOpt := None
-  )
-
   override def projectSettings: Seq[Setting[_]] = Seq(
-    Def.derive(
-      nativeLinkingOptions ++=
-        scalapyLinkingOptionsOpt.value.getOrElse(scalapyPython.value.ldflags.get)
-    ),
-    Def.derive(scalapyLinkingOptionsOpt := Some(scalapyLinkingOptions.value))
+    scalapyLinkingOptions := (
+      scalapyLinkingOptions or Def.setting(
+        scalapyPython.value.ldflags.get
+      )
+    ).value,
+    nativeLinkingOptions ++= scalapyLinkingOptions.value
   )
 }
