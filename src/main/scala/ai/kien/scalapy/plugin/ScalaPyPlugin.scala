@@ -12,9 +12,9 @@ object ScalaPyPlugin extends AutoPlugin {
     val scalapyPython = settingKey[Python]("")
   }
 
-  private[plugin] val scalapyPythonExecutableOpt = SettingKey.local[Option[String]]
-
   import autoImport._
+
+  private val scalapyPythonExecutableOpt = SettingKey.local[Option[String]]
 
   override def globalSettings: Seq[Setting[_]] = Seq(
     scalapyPythonExecutableOpt := None
