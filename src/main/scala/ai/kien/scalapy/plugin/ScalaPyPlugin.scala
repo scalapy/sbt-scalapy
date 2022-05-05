@@ -14,14 +14,7 @@ object ScalaPyPlugin extends AutoPlugin {
 
   import autoImport._
 
-  private val scalapyPythonExecutableOpt = SettingKey.local[Option[String]]
-
-  override def globalSettings: Seq[Setting[_]] = Seq(
-    scalapyPythonExecutableOpt := None
-  )
-
   override def projectSettings: Seq[Setting[_]] = Seq(
-    Def.derive(scalapyPythonExecutableOpt := Some(scalapyPythonExecutable.value)),
-    scalapyPython := Python(scalapyPythonExecutableOpt.value)
+    scalapyPython := Python((scalapyPythonExecutable ?).value)
   )
 }
