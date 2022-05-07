@@ -33,3 +33,25 @@ jobs:
       - name: Test virtualenv
         run: scripts/virtualenv_test.sh
         shell: bash
+  conda:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        jdk: [8]
+        python: [3.7, 3.8, 3.9]
+    steps:
+      - uses: actions/checkout@master
+      - uses: coursier/cache-action@v6.3
+      - uses: coursier/setup-action@v1
+        with:
+          jvm: ${{ matrix.jdk }}
+          apps: sbtn
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: ${{ matrix.python }}
+      - name: Test default Python
+        run: sbt scripted
+        shell: bash
