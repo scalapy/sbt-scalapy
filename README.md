@@ -1,20 +1,14 @@
 # Automatic SBT configuration for ScalaPy
 
+*supports both JVM and/or Scala Native projects*
+
 ![Build Status](https://github.com/kiendang/sbt-scalapy/actions/workflows/ci.yml/badge.svg)
 ## Quick start
 
 1. Add the plugin to `project/plugins.sbt`
 
-    for JVM,
-
     ```scala
     addSbtPlugin("ai.kien" % "sbt-scalapy" % "<version>")
-    ```
-
-    for Scala Native,
-
-    ```scala
-    addSbtPlugin("ai.kien" % "sbt-scalapy-native" % "<version>")
     ```
 
 2. Enable the plugin for your ScalaPy project in `build.sbt`
@@ -57,4 +51,14 @@ ScalaPy for Scala Native requries [the linker flags for embedding Python](https:
 
 ```scala
 scalapyLinkingOptions := Seq("-l...", "-l...")
+```
+
+## Virtualenv
+
+To use a virtualenv Python, you can either activate the virtualenv then start sbt or set `scalapyPythonExecutable` to the virtualenv Python executable.
+
+For Scala Native, you also need to set the `SCALAPY_PYTHON_PROGRAMNAME` environment variable to the virtualenv Python executable,
+
+```sh
+SCALAPY_PYTHON_PROGRAMNAME="/path/to/python" sbt
 ```
