@@ -7,4 +7,4 @@ sys.props.get("plugin.version") match {
     )
 }
 
-libraryDependencies += "ai.kien" %% "python-native-libs" % "0.2.2"
+libraryDependencies += "ai.kien" %% "python-native-libs" % "0.2.3"
