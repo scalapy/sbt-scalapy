@@ -7,4 +7,7 @@ sys.props.get("plugin.version") match {
     )
 }
 
+resolvers +=
+  "Sonatype OSS Snapshots" at "https://s01.oss.sonatype.org/content/repositories/snapshots"
+
 libraryDependencies += "ai.kien" %% "python-native-libs" % "0.2.3"

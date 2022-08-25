@@ -8,3 +8,6 @@ sys.props.get("plugin.version") match {
          |Specify this property using the scriptedLaunchOpts -D.""".stripMargin
     )
 }
+
+resolvers +=
+  "Sonatype OSS Snapshots" at "https://s01.oss.sonatype.org/content/repositories/snapshots"

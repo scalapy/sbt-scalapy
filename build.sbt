@@ -26,7 +26,9 @@ lazy val `sbt-scalapy` = project
   .settings(
     name := "sbt-scalapy",
     description := "a plugin for automatically configuration of SBT for ScalaPy projects",
-    libraryDependencies += pythonNativeLibs
+    libraryDependencies += pythonNativeLibs,
+    resolvers +=
+      "Sonatype OSS Snapshots" at "https://s01.oss.sonatype.org/content/repositories/snapshots"
   )
   .settings(
     pluginCrossBuild / sbtVersion := "1.2.1",
