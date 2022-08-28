@@ -14,7 +14,7 @@ CI_PYTHON="${VENV_DIR}/bin/python" \
 CI_VIRTUALENV=true \
 CI_PYTHON="${VENV_DIR}/bin/python" \
 SCALAPY_PYTHON_PROGRAMNAME="${VENV_DIR}/bin/python" \
-  sbt "scripted scalanative/*"
+  sbt "scripted native/*"
 
 echo "Delete virtualenv ${VENV_DIR}"
 rm -rf "${VENV_DIR}"
