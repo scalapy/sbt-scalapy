@@ -26,4 +26,7 @@ object ScalaPyNativePlugin extends AutoPlugin {
     ).value,
     nativeLinkingOptions ++= scalapyLinkingOptions.value
   )
+
+  lazy val scalapySettings: Seq[Setting[_]] =
+    projectSettings ++ ScalaPyPlugin.projectSettings
 }

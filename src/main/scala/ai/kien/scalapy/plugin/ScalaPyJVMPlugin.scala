@@ -67,4 +67,7 @@ object ScalaPyJVMPlugin extends AutoPlugin {
         "scalapy.python.programname" -> scalapyPythonProgramName.value
       ).map { case (k, v) => s"""-D$k=$v""" }.toSeq
   )
+
+  lazy val scalapySettings: Seq[Setting[_]] =
+    projectSettings ++ ScalaPyPlugin.projectSettings
 }
